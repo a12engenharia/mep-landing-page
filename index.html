@@ -496,7 +496,7 @@
       <div class="hero-photo-col">
         <div class="hero-photo-frame">
           <div class="photo-placeholder">
-            <img src="/foto-guilherme-1.jpg" alt="Guilherme Gouvêa, fundador da A12 Engenharia">
+            <img src="/foto-guilherme-1.JPEG" alt="Guilherme Gouvêa, fundador da A12 Engenharia">
           </div>
           <div class="hero-badge">
             <span class="dot"></span>
@@ -591,7 +591,7 @@
     <div class="story">
       <div class="story-photo">
         <div class="photo-placeholder">
-          <img src="/foto-guilherme-2.jpg" alt="Guilherme Gouvêa trabalhando no escritório da A12 Engenharia">
+          <img src="/foto-guilherme-2.JPEG" alt="Guilherme Gouvêa trabalhando no escritório da A12 Engenharia">
         </div>
       </div>
       <div class="story-copy">
@@ -888,8 +888,7 @@
       <div class="price-old">De R$ 997</div>
       <div class="price-new">R$ 497</div>
       <p class="price-note">à vista · ou 12x de R$ 51,40 no cartão</p>
-      <!-- Substitua o href abaixo pelo link real de checkout (Hotmart, Kiwify, etc.) -->
-      <a href="#" class="btn btn-primary">Quero entrar para o MEP</a>
+      <a onclick="return false;" href="https://pay.hotmart.com/P106731844E?checkoutMode=2" class="btn btn-primary hotmart-fb">Quero entrar para o MEP</a>
       <ul class="price-trust">
         <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Acesso imediato após a confirmação</li>
         <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Garantia de satisfação incluída</li>
@@ -953,8 +952,7 @@
       <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Comunidade e atualizações</li>
     </ul>
 
-    <!-- Substitua o href abaixo pelo link real de checkout (Hotmart, Kiwify, etc.) -->
-    <a href="#" class="btn btn-primary">Quero entrar para o MEP por R$ 497</a>
+    <a onclick="return false;" href="https://pay.hotmart.com/P106731844E?checkoutMode=2" class="btn btn-primary hotmart-fb">Quero entrar para o MEP por R$ 497</a>
     <p class="fine">De R$ 997 por R$ 497 à vista (ou 12x de R$ 51,40) na turma de lançamento · Garantia de satisfação incluída.</p>
   </div>
 </section>
@@ -1038,6 +1036,19 @@
     if(i === 0){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
   });
 </script>
+
+<script type="text/javascript">
+	function importHotmart(){
+ 		var imported = document.createElement('script');
+ 		imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
+ 		document.head.appendChild(imported);
+		var link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.type = 'text/css';
+		link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
+		document.head.appendChild(link);	}
+ 	importHotmart();
+ </script>
 
 </body>
 </html>
