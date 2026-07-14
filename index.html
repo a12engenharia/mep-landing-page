@@ -23,6 +23,7 @@
     --brand-dark:#00448F;
     --success:#25D366;
     --success-dark:#1DA851;
+    --danger:#D8342A;
     --radius-lg:24px;
     --radius-md:16px;
     --radius-sm:10px;
@@ -85,6 +86,12 @@
   .btn-secondary:hover{ background:var(--border); }
   .btn-success{ background:var(--success); color:#fff; }
   .btn-success:hover{ background:var(--success-dark); }
+  @keyframes btn-pulse{
+    0%{ box-shadow:0 0 0 0 rgba(37,211,102,0.55); }
+    70%{ box-shadow:0 0 0 12px rgba(37,211,102,0); }
+    100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
+  }
+  .btn-pulse{ animation:btn-pulse 2.2s ease-out infinite; }
 
   /* ---------------- NAV ---------------- */
   header{
@@ -145,7 +152,6 @@
   /* photo placeholder */
   .photo-placeholder{
     background:var(--surface-2);
-    border:1px solid var(--border);
     border-radius:var(--radius-lg);
     display:flex; align-items:center; justify-content:center; flex-direction:column; gap:10px;
     color:var(--text-3);
@@ -199,10 +205,6 @@
   @media(min-width:768px){ .sticky-cta{ display:none; } }
 
   /* ---------------- BASTIDORES ---------------- */
-  .backstage-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:40px; }
-  @media(min-width:640px){ .backstage-grid{ grid-template-columns:repeat(4,1fr); } }
-  .backstage-grid .photo-placeholder{ aspect-ratio:1/1; border-radius:var(--radius-sm); background:rgba(255,255,255,0.06); border-color:var(--brand); color:rgba(255,255,255,0.5); }
-  .backstage-grid .ph-label{ color:rgba(255,255,255,0.5); font-size:11px; }
   .diferencial .mini-stats{ display:flex; justify-content:center; gap:36px; flex-wrap:wrap; margin-top:36px; }
   .diferencial .mini-stat{ text-align:center; }
   .diferencial .mini-stat .n{ font-size:26px; font-weight:800; color:#fff; }
@@ -349,7 +351,7 @@
   .includes-grid{
     display:grid; grid-template-columns:1fr 1fr; gap:14px;
   }
-  @media(min-width:640px){ .includes-grid{ grid-template-columns:repeat(4,1fr); } }
+  @media(min-width:640px){ .includes-grid{ grid-template-columns:repeat(3,1fr); } }
   .include-card{
     border:1px solid var(--border); border-radius:var(--radius-md);
     padding:24px 18px; text-align:center;
@@ -364,23 +366,6 @@
   @media(min-width:768px){ .diferencial h2{ font-size:36px; } }
   .diferencial p{ color:rgba(255,255,255,0.62); font-size:16px; max-width:52ch; margin:0 auto; }
   .diferencial h2 em{ font-style:normal; color:var(--brand); }
-
-  /* ---------------- DEPOIMENTOS ---------------- */
-  .testi-grid{ display:grid; grid-template-columns:1fr; gap:14px; }
-  @media(min-width:768px){ .testi-grid{ grid-template-columns:repeat(3,1fr); } }
-  .testi-card{
-    border:1px dashed var(--border); border-radius:var(--radius-md);
-    padding:26px 22px; min-height:150px;
-    display:flex; flex-direction:column; justify-content:center; gap:10px;
-    background:var(--surface);
-  }
-  .testi-card .ph-avatar{
-    width:36px; height:36px; border-radius:50%; background:var(--surface-2);
-  }
-  .testi-card p{ font-size:13.5px; color:var(--text-3); }
-  .testi-empty-note{
-    text-align:center; margin-top:28px; font-size:14px; color:var(--text-3);
-  }
 
   /* ---------------- GARANTIA ---------------- */
   .guarantee-card{
@@ -459,6 +444,8 @@
     padding:7px 16px; border-radius:999px; margin-bottom:22px;
   }
   .price-old{ font-size:16px; color:var(--text-3); text-decoration:line-through; }
+  .price-old-strike{ font-size:17px; color:var(--danger); text-decoration:line-through; font-weight:600; }
+  .waitlist-condition{ font-size:14.5px; color:var(--text-2); margin:10px 0 4px; line-height:1.5; max-width:32ch; margin-left:auto; margin-right:auto; }
   .price-new{ font-size:50px; font-weight:800; letter-spacing:-0.02em; color:var(--text); margin:6px 0 6px; line-height:1; }
   @media(min-width:768px){ .price-new{ font-size:58px; } }
   .price-note{ font-size:13.5px; color:var(--text-2); margin-bottom:30px; }
@@ -485,7 +472,7 @@
 <header id="site-header">
   <div class="nav">
     <div class="logo"><img src="/logo-mep-transparent.png" alt="MEP — Método Escritório Próspero" class="nav-logo"></div>
-    <a href="#oferta" class="btn btn-primary">Quero entrar</a>
+    <a href="#oferta" class="btn btn-primary btn-pulse">Entrar no MEP</a>
   </div>
 </header>
 
@@ -558,7 +545,7 @@
     </div>
 
     <div class="mini-cta">
-      <a href="#oferta" class="btn btn-success">Quero sair dessa lista</a>
+      <a href="#oferta" class="btn btn-success">Quero entrar para o MEP</a>
       <p>Leva menos de 2 minutos para garantir sua vaga.</p>
     </div>
   </div>
@@ -749,16 +736,14 @@
   <div class="wrap">
     <div class="section-head center">
       <div class="eyebrow">O que está incluso</div>
-      <h2>Você não leva só aulas. Você leva o sistema pronto para rodar.</h2>
-      <p>Os mesmos CRMs, templates e checklists que operam a A12 Engenharia, prontos para você copiar dentro do seu escritório.</p>
+      <h2>Você não recebe um template pronto. Você constrói o sistema comigo.</h2>
+      <p>As mesmas ferramentas que operam a A12 Engenharia hoje — aplicadas dentro do seu escritório, passo a passo, não entregues como um pacote de arquivos pra você se virar sozinho.</p>
     </div>
     <div class="includes-grid">
-      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg><span>CRM de Leads</span></div>
-      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg><span>CRM de Projetos</span></div>
-      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v10H8l-4 4V5z"/></svg><span>CRM de Conteúdo</span></div>
-      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="4" width="7" height="7"/><rect x="13" y="4" width="7" height="7"/><rect x="4" y="13" width="7" height="7"/><rect x="13" y="13" width="7" height="7"/></svg><span>Templates</span></div>
-      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg><span>Checklists</span></div>
-      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6"/></svg><span>Modelos de documentos</span></div>
+      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16M15 4v16"/></svg><span>Planilha Financeira da A12</span></div>
+      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span>CRM de Propostas da A12</span></div>
+      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg><span>Estrutura de Pastas da A12</span></div>
+      <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H6a2 2 0 00-2 2v14a2 2 0 002 2h12a2 2 0 002-2V9z"/><path d="M14 3v6h6"/></svg><span>Modelos de Documentos da A12</span></div>
       <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="17" cy="7" r="2.4"/><path d="M15.5 13.2c2.6.5 4.5 2.4 4.5 4.8"/></svg><span>Comunidade</span></div>
       <div class="include-card"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4v6h6M20 20v-6h-6"/><path d="M5 15a8 8 0 0014-4M19 9A8 8 0 005 13"/></svg><span>Atualizações</span></div>
     </div>
@@ -770,7 +755,7 @@
   <div class="wrap">
     <div class="eyebrow" style="color:rgba(255,255,255,0.5); text-align:center;">Desenvolvido dentro de um escritório real</div>
     <h2>Nada aqui foi criado apenas para <em>vender curso</em>.</h2>
-    <p>O MEP foi criado por <strong style="color:#fff;">Guilherme Gouvêa</strong> a partir da experiência prática da A12 Engenharia. A A12 é a prova de que o método funciona — cada processo, template, CRM e checklist nasceu lá dentro e é usado diariamente na operação real do escritório, não em teoria de sala de aula.</p>
+    <p>O MEP foi criado por <strong style="color:#fff;">Guilherme Gouvêa</strong> a partir da experiência prática da A12 Engenharia. A A12 é a prova de que o método funciona — cada planilha, processo e ferramenta nasceu lá dentro e é usada diariamente na operação real do escritório, não em teoria de sala de aula.</p>
 
     <div class="mini-stats">
       <div class="mini-stat" style="max-width:520px; text-align:center;">
@@ -778,44 +763,9 @@
       </div>
     </div>
 
-    <div class="backstage-grid">
-      <div class="photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="22" height="22"><rect x="3" y="4" width="18" height="16" rx="2"/></svg>
-        <span class="ph-label">Bastidor do escritório</span>
-      </div>
-      <div class="photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="22" height="22"><path d="M4 4v6h6M20 20v-6h-6"/></svg>
-        <span class="ph-label">Equipe em reunião</span>
-      </div>
-      <div class="photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="22" height="22"><path d="M9 11l2 2 4-4"/><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
-        <span class="ph-label">Analisando projeto</span>
-      </div>
-      <div class="photo-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" width="22" height="22"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
-        <span class="ph-label">Guilherme em campo</span>
-      </div>
-    </div>
-
     <div class="mini-cta">
       <a href="#oferta" class="btn btn-primary">Quero aplicar isso no meu escritório</a>
     </div>
-  </div>
-</section>
-
-<!-- ================= DEPOIMENTOS ================= -->
-<section class="reveal">
-  <div class="wrap">
-    <div class="section-head center">
-      <div class="eyebrow">Depoimentos</div>
-      <h2>Histórias de quem está aplicando o MEP</h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card"><div class="ph-avatar"></div><p>Espaço reservado para depoimento em vídeo ou texto.</p></div>
-      <div class="testi-card"><div class="ph-avatar"></div><p>Espaço reservado para depoimento em vídeo ou texto.</p></div>
-      <div class="testi-card"><div class="ph-avatar"></div><p>Espaço reservado para depoimento em vídeo ou texto.</p></div>
-    </div>
-    <p class="testi-empty-note">Novos depoimentos são adicionados conforme os alunos aplicam o método.</p>
   </div>
 </section>
 
@@ -884,18 +834,19 @@
     <p class="roi-line">O MEP não é uma habilidade isolada — é o sistema completo para operar um escritório de engenharia ou arquitetura. Se ele te ajudar a fechar <strong>um único projeto a mais</strong>, o investimento já se paga. O sistema continua trabalhando por anos depois disso.</p>
 
     <div class="price-card">
-      <span class="price-badge">Oferta de lançamento</span>
-      <div class="price-old">De R$ 997</div>
-      <div class="price-new">R$ 497</div>
-      <p class="price-note">à vista · ou 12x de R$ 51,40 no cartão</p>
-      <a onclick="return false;" href="https://pay.hotmart.com/P106731844E?checkoutMode=2" class="btn btn-primary hotmart-fb">Quero entrar para o MEP</a>
+      <span class="price-badge">Lista de espera aberta</span>
+      <div class="price-old-strike">Investimento previsto R$ 497,00</div>
+      <p class="waitlist-condition">Condição especial de lançamento para quem entrar na lista de espera</p>
+      <div class="price-new">R$ 297</div>
+      <p class="price-note">à vista · condição exclusiva de quem entrar na lista</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSeln8zLxrUyrVPl0wSIzLUZy_REeEvCl27UxppvDPewNOeZ6A/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">Entrar na lista de espera</a>
       <ul class="price-trust">
-        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Acesso imediato após a confirmação</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Vaga garantida com condição especial</li>
         <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Garantia de satisfação incluída</li>
-        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Pagamento processado em ambiente seguro</li>
+        <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Cadastro rápido, sem compromisso</li>
       </ul>
     </div>
-    <p class="price-raise-note">Este é o valor da turma de lançamento. Conforme o MEP acumula alunos e resultados, o investimento sobe para o valor cheio.</p>
+    <p class="price-raise-note">Esta condição vale apenas para quem entrar na lista de espera da primeira turma. Depois da abertura oficial, o investimento volta para o valor cheio.</p>
   </div>
 </section>
 
@@ -908,12 +859,12 @@
     </div>
     <div class="faq-list">
       <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Por que o investimento é R$ 497?<span class="plus"></span></button>
-        <div class="faq-a"><p>Porque o MEP não ensina uma habilidade isolada — entrega o sistema completo para operar um escritório: CRMs, templates, checklists e o método de captação. Se ele te ajudar a fechar um único projeto a mais, o investimento se paga sozinho.</p></div>
+        <button class="faq-q" aria-expanded="false">Por que entrar na lista de espera?<span class="plus"></span></button>
+        <div class="faq-a"><p>Porque garante a condição especial de lançamento (R$ 297 em vez do valor previsto de R$ 497) e sua vaga na primeira turma. O MEP não ensina uma habilidade isolada — entrega o sistema completo para operar um escritório: as ferramentas reais da A12 e o método de captação, construídos junto com você.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Posso parcelar?<span class="plus"></span></button>
-        <div class="faq-a"><p>Sim. As opções de parcelamento ficam disponíveis diretamente no checkout, na etapa de pagamento.</p></div>
+        <div class="faq-a"><p>Sim. As opções de parcelamento são apresentadas quando a turma abre oficialmente e o pagamento é confirmado — entrar na lista de espera não cobra nada agora.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Preciso já ter um escritório aberto para fazer o MEP?<span class="plus"></span></button>
@@ -925,7 +876,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Como funciona o acesso ao conteúdo?<span class="plus"></span></button>
-        <div class="faq-a"><p>Assim que a sua entrada é confirmada, você recebe acesso a todos os módulos, CRMs, templates e materiais de apoio do sistema MEP, para começar a aplicar no seu escritório imediatamente.</p></div>
+        <div class="faq-a"><p>Assim que a sua entrada é confirmada, você recebe acesso a todos os módulos, às ferramentas da A12 e aos materiais de apoio do sistema MEP, para começar a aplicar no seu escritório imediatamente.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false">Existe comunidade ou suporte durante o método?<span class="plus"></span></button>
@@ -947,13 +898,13 @@
 
     <ul class="final-recap">
       <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> 6 módulos completos</li>
-      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> CRMs de leads, projetos e conteúdo</li>
-      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Templates, checklists e documentos</li>
+      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> CRM de Propostas e Planilha Financeira da A12</li>
+      <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Estrutura de pastas e modelos de documentos da A12</li>
       <li><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 10l4 4 8-9"/></svg> Comunidade e atualizações</li>
     </ul>
 
-    <a onclick="return false;" href="https://pay.hotmart.com/P106731844E?checkoutMode=2" class="btn btn-primary hotmart-fb">Quero entrar para o MEP por R$ 497</a>
-    <p class="fine">De R$ 997 por R$ 497 à vista (ou 12x de R$ 51,40) na turma de lançamento · Garantia de satisfação incluída.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeln8zLxrUyrVPl0wSIzLUZy_REeEvCl27UxppvDPewNOeZ6A/viewform?usp=dialog" target="_blank" rel="noopener" class="btn btn-primary">Entrar na lista de espera da primeira turma</a>
+    <p class="fine">Condição especial de lançamento: de R$ 497 por R$ 297 para quem entrar na lista de espera · Garantia de satisfação incluída.</p>
   </div>
 </section>
 
@@ -1036,19 +987,6 @@
     if(i === 0){ item.classList.add('open'); btn.setAttribute('aria-expanded','true'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
   });
 </script>
-
-<script type="text/javascript">
-	function importHotmart(){
- 		var imported = document.createElement('script');
- 		imported.src = 'https://static.hotmart.com/checkout/widget.min.js';
- 		document.head.appendChild(imported);
-		var link = document.createElement('link');
-		link.rel = 'stylesheet';
-		link.type = 'text/css';
-		link.href = 'https://static.hotmart.com/css/hotmart-fb.min.css';
-		document.head.appendChild(link);	}
- 	importHotmart();
- </script>
 
 </body>
 </html>
